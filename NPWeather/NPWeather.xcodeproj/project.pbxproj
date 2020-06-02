@@ -56,15 +56,63 @@
 		A2C52D8C2486878200AC0EF9 /* NPWeather */ = {
 			isa = PBXGroup;
 			children = (
-				A2C52D8D2486878200AC0EF9 /* AppDelegate.swift */,
-				A2C52D8F2486878200AC0EF9 /* SceneDelegate.swift */,
-				A2C52D912486878200AC0EF9 /* ViewController.swift */,
-				A2C52D932486878200AC0EF9 /* Main.storyboard */,
+				A2C52DA6248689D000AC0EF9 /* Model */,
+				A2C52DA5248689C700AC0EF9 /* View */,
+				A2C52DA4248689AE00AC0EF9 /* ViewModel */,
+				A2C52DA3248689AB00AC0EF9 /* Manager */,
+				A2C52DA2248689A700AC0EF9 /* Screens */,
+				A2C52DA12486899F00AC0EF9 /* Support */,
 				A2C52D962486878A00AC0EF9 /* Assets.xcassets */,
-				A2C52D982486878A00AC0EF9 /* LaunchScreen.storyboard */,
 				A2C52D9B2486878A00AC0EF9 /* Info.plist */,
 			);
 			path = NPWeather;
+			sourceTree = "<group>";
+		};
+		A2C52DA12486899F00AC0EF9 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A2C52D932486878200AC0EF9 /* Main.storyboard */,
+				A2C52D982486878A00AC0EF9 /* LaunchScreen.storyboard */,
+				A2C52D8D2486878200AC0EF9 /* AppDelegate.swift */,
+				A2C52D8F2486878200AC0EF9 /* SceneDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		A2C52DA2248689A700AC0EF9 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A2C52D912486878200AC0EF9 /* ViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		A2C52DA3248689AB00AC0EF9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		A2C52DA4248689AE00AC0EF9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A2C52DA5248689C700AC0EF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2C52DA6248689D000AC0EF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +264,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
