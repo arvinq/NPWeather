@@ -21,8 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = getMainNavigationController()
         window?.makeKeyAndVisible()
+    }
+    
+    func getMainNavigationController() -> UIViewController {
+        return UINavigationController(rootViewController: WeatherViewController())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
