@@ -17,6 +17,7 @@ class SuburbCollectionViewCell: UICollectionViewCell {
     var suburbTemperatureLabel: UILabel!
     
     var textStackView: UIStackView!
+    var separatorView: UIView!
     
     var suburbViewModel: SuburbViewModel? {
         didSet {
@@ -41,6 +42,11 @@ class SuburbCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         
+        separatorView = UIView()
+        separatorView.backgroundColor = .systemGray
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(separatorView)
+        
         textStackView = UIStackView()
         textStackView.axis = .vertical
         textStackView.alignment = .fill
@@ -63,6 +69,11 @@ class SuburbCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 0.5),
+            
             textStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             textStackView.topAnchor.constraint(equalTo: topAnchor),
             textStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
