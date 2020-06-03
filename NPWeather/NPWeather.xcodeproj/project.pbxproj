@@ -15,6 +15,13 @@
 		A2C52DA82486B9D300AC0EF9 /* Suburb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DA72486B9D300AC0EF9 /* Suburb.swift */; };
 		A2C52DAA2486BBF800AC0EF9 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DA92486BBF700AC0EF9 /* Country.swift */; };
 		A2C52DAC2486BC2E00AC0EF9 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DAB2486BC2E00AC0EF9 /* Sport.swift */; };
+		A2C52DAF2486C2D300AC0EF9 /* SuburbCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DAE2486C2D300AC0EF9 /* SuburbCollectionViewCell.swift */; };
+		A2C52DB12486C60400AC0EF9 /* SuburbViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DB02486C60400AC0EF9 /* SuburbViewModel.swift */; };
+		A2C52DB32486C74500AC0EF9 /* ViewModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DB22486C74500AC0EF9 /* ViewModelManager.swift */; };
+		A2C52DB52486C80E00AC0EF9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DB42486C80E00AC0EF9 /* NetworkManager.swift */; };
+		A2C52DB82486CC4700AC0EF9 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DB72486CC4700AC0EF9 /* ErrorMessage.swift */; };
+		A2C52DBB2487276E00AC0EF9 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */; };
+		A2C52DBF24876D4300AC0EF9 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		A2C52DA72486B9D300AC0EF9 /* Suburb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suburb.swift; sourceTree = "<group>"; };
 		A2C52DA92486BBF700AC0EF9 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		A2C52DAB2486BC2E00AC0EF9 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
+		A2C52DAE2486C2D300AC0EF9 /* SuburbCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuburbCollectionViewCell.swift; sourceTree = "<group>"; };
+		A2C52DB02486C60400AC0EF9 /* SuburbViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuburbViewModel.swift; sourceTree = "<group>"; };
+		A2C52DB22486C74500AC0EF9 /* ViewModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelManager.swift; sourceTree = "<group>"; };
+		A2C52DB42486C80E00AC0EF9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A2C52DB72486CC4700AC0EF9 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +80,10 @@
 				A2C52DA3248689AB00AC0EF9 /* Manager */,
 				A2C52DA2248689A700AC0EF9 /* Screens */,
 				A2C52DA12486899F00AC0EF9 /* Support */,
-				A2C52D962486878A00AC0EF9 /* Assets.xcassets */,
+				A2C52DB62486CBEE00AC0EF9 /* Utilities */,
+				A2C52DB92487274000AC0EF9 /* Extension */,
 				A2C52D9B2486878A00AC0EF9 /* Info.plist */,
+				A2C52D962486878A00AC0EF9 /* Assets.xcassets */,
 			);
 			path = NPWeather;
 			sourceTree = "<group>";
@@ -93,6 +109,8 @@
 		A2C52DA3248689AB00AC0EF9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A2C52DB22486C74500AC0EF9 /* ViewModelManager.swift */,
+				A2C52DB42486C80E00AC0EF9 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -100,6 +118,7 @@
 		A2C52DA4248689AE00AC0EF9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A2C52DB02486C60400AC0EF9 /* SuburbViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -107,6 +126,7 @@
 		A2C52DA5248689C700AC0EF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2C52DAD2486C2C000AC0EF9 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +139,31 @@
 				A2C52DAB2486BC2E00AC0EF9 /* Sport.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A2C52DAD2486C2C000AC0EF9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A2C52DAE2486C2D300AC0EF9 /* SuburbCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A2C52DB62486CBEE00AC0EF9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A2C52DB72486CC4700AC0EF9 /* ErrorMessage.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A2C52DB92487274000AC0EF9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */,
+				A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,10 +238,17 @@
 			files = (
 				A2C52D922486878200AC0EF9 /* WeatherViewController.swift in Sources */,
 				A2C52D8E2486878200AC0EF9 /* AppDelegate.swift in Sources */,
+				A2C52DBF24876D4300AC0EF9 /* Double+Ext.swift in Sources */,
+				A2C52DBB2487276E00AC0EF9 /* UIViewController+Ext.swift in Sources */,
+				A2C52DB82486CC4700AC0EF9 /* ErrorMessage.swift in Sources */,
+				A2C52DB52486C80E00AC0EF9 /* NetworkManager.swift in Sources */,
 				A2C52DA82486B9D300AC0EF9 /* Suburb.swift in Sources */,
 				A2C52DAA2486BBF800AC0EF9 /* Country.swift in Sources */,
+				A2C52DB32486C74500AC0EF9 /* ViewModelManager.swift in Sources */,
 				A2C52DAC2486BC2E00AC0EF9 /* Sport.swift in Sources */,
+				A2C52DAF2486C2D300AC0EF9 /* SuburbCollectionViewCell.swift in Sources */,
 				A2C52D902486878200AC0EF9 /* SceneDelegate.swift in Sources */,
+				A2C52DB12486C60400AC0EF9 /* SuburbViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
