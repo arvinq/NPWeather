@@ -9,7 +9,7 @@
 import Foundation
 
 struct Suburb: Codable {
-    let venueID: Int
+    let venueId: String
     let name: String
     let country: Country
     let sport: Sport
@@ -17,12 +17,26 @@ struct Suburb: Codable {
     let weatherConditionIcon: String?
     let weatherWind: String?
     let weatherHumidity: String?
-    let weatherTemp: Int?
-    let weatherFeelsLike: Int?
-    let weatherLastUpdated: Date?
+    let weatherTemp: String?
+    let weatherFeelsLike: String?
+    let weatherLastUpdated: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case venueId = "_venueID"
+        case name = "_name"
+        case country = "_country"
+        case sport = "_sport"
+        case weatherCondition = "_weatherCondition"
+        case weatherConditionIcon = "_weatherConditionIcon"
+        case weatherWind = "_weatherWind"
+        case weatherHumidity = "_weatherHumidity"
+        case weatherTemp = "_weatherTemp"
+        case weatherFeelsLike = "_weatherFeelsLike"
+        case weatherLastUpdated = "_weatherLastUpdated"
+    }
 }
 
 /** Intermediary Structure */
-struct Data: Codable {
+struct Suburbs: Codable {
     let data: [Suburb]
 }

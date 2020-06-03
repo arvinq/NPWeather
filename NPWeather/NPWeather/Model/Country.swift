@@ -9,6 +9,11 @@
 import Foundation
 
 struct Country: Codable {
-    let countryID: Int
+    let countryId: String
     let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case countryId = "_countryID"
+        case name = "_name"
+    }
 }
