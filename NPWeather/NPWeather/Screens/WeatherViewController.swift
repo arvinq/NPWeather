@@ -70,8 +70,11 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDeleg
     
     func setupDatasource() {
         datasource = UICollectionViewDiffableDataSource<Section, SuburbViewModel>(collectionView: collectionView, cellProvider: { (collectionView, indexpath, suburbViewModel) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuburbCollectionViewCell.reuseId, for: indexpath)
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuburbCollectionViewCell.reuseId, for: indexpath) as! SuburbCollectionViewCell
+            cell.suburbViewModel = suburbViewModel
             return cell
+            
         })
     }
     
@@ -84,8 +87,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth  = collectionView.frame.width * 0.8
-        let cellHeight = collectionView.frame.height * 0.2
+        let cellWidth  = collectionView.frame.width * 0.85
+        let cellHeight = collectionView.frame.height * 0.15
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
