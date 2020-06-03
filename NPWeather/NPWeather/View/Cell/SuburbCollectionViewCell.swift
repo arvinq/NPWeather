@@ -12,9 +12,9 @@ class SuburbCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "SuburbCollectionViewCell"
     
-    var suburbNameLabel: UILabel!
-    var suburbConditionLabel: UILabel!
-    var suburbTemperatureLabel: UILabel!
+    var suburbNameLabel: TitleLabel!
+    var suburbConditionLabel: SecondaryTitleLabel!
+    var suburbTemperatureLabel: TemperatureLabel!
     
     var textStackView: UIStackView!
     var separatorView: UIView!
@@ -41,7 +41,6 @@ class SuburbCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupView() {
-        
         separatorView = UIView()
         separatorView.backgroundColor = .systemGray
         separatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,16 +53,13 @@ class SuburbCollectionViewCell: UICollectionViewCell {
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textStackView)
         
-        suburbNameLabel = UILabel()
-        suburbNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        suburbNameLabel = TitleLabel(fontSize: contentView.bounds.height * 0.2)
         textStackView.addArrangedSubview(suburbNameLabel)
         
-        suburbConditionLabel = UILabel()
-        suburbConditionLabel.translatesAutoresizingMaskIntoConstraints = false
+        suburbConditionLabel = SecondaryTitleLabel(fontSize: contentView.bounds.height * 0.15)
         textStackView.addArrangedSubview(suburbConditionLabel)
         
-        suburbTemperatureLabel = UILabel()
-        suburbTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+        suburbTemperatureLabel = TemperatureLabel(fontSize: contentView.bounds.height * 0.4)
         addSubview(suburbTemperatureLabel)
     }
     
