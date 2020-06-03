@@ -98,5 +98,16 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDeleg
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let suburbViewModel = datasource.itemIdentifier(for: indexPath) else { return }
+        
+        let weatherInfoVC = WeatherInfoViewController()
+        let navController = UINavigationController(rootViewController: weatherInfoVC)
+        
+        weatherInfoVC.suburbViewModel = suburbViewModel
+        
+        present(navController, animated: true)
+    }
 }
 
