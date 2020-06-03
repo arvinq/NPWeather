@@ -22,6 +22,7 @@
 		A2C52DB82486CC4700AC0EF9 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DB72486CC4700AC0EF9 /* ErrorMessage.swift */; };
 		A2C52DBB2487276E00AC0EF9 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */; };
 		A2C52DBF24876D4300AC0EF9 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */; };
+		A2C52DC124877BAD00AC0EF9 /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DC024877BAD00AC0EF9 /* String+ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A2C52DB72486CC4700AC0EF9 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
+		A2C52DC024877BAD00AC0EF9 /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */,
 				A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */,
+				A2C52DC024877BAD00AC0EF9 /* String+ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2C52DC124877BAD00AC0EF9 /* String+ext.swift in Sources */,
 				A2C52D922486878200AC0EF9 /* WeatherViewController.swift in Sources */,
 				A2C52D8E2486878200AC0EF9 /* AppDelegate.swift in Sources */,
 				A2C52DBF24876D4300AC0EF9 /* Double+Ext.swift in Sources */,
