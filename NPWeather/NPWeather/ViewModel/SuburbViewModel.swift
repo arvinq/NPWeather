@@ -30,6 +30,6 @@ struct SuburbViewModel: Hashable {
     }
     
     init(suburb: Suburb) {
-        self.init(id: Int(suburb.venueId)!, suburbName: suburb.name, weatherCondition: suburb.weatherCondition, weatherFeelsLike: suburb.weatherFeelsLike, weatherHumidity: suburb.weatherHumidity, weatherWind: suburb.weatherWind, weatherLastUpdated: suburb.weatherLastUpdated)
+        self.init(id: Int(suburb.venueId)!, suburbName: suburb.name, weatherCondition: suburb.weatherCondition, weatherTemp: suburb.weatherTemp, weatherFeelsLike: suburb.weatherFeelsLike, weatherHumidity: suburb.weatherHumidity, weatherWind: suburb.weatherWind, weatherLastUpdated: suburb.weatherLastUpdated)
     }
 }
