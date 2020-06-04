@@ -71,8 +71,8 @@ class SuburbCollectionViewCell: UICollectionViewCell {
             separatorView.heightAnchor.constraint(equalToConstant: 0.5),
             
             textStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            textStackView.topAnchor.constraint(equalTo: topAnchor),
-            textStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            textStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
             
             suburbTemperatureLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             suburbTemperatureLabel.topAnchor.constraint(equalTo: topAnchor),
