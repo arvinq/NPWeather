@@ -12,6 +12,9 @@ enum SFSymbols {
     static let filterSort   = UIImage(systemName: "line.horizontal.3.decrease.circle")
     static let filterSort2  = UIImage(systemName: "arrow.up.arrow.down")
     static let close        = UIImage(systemName: "xmark")
+    static let calendar     = UIImage(systemName: "calendar")
+    static let alphabet     = UIImage(systemName: "textformat.abc")
+    static let thermometer  = UIImage(systemName: "thermometer")
 }
 
 enum NavTitle {

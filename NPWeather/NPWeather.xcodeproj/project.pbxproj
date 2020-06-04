@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A287A6B62488BE1B00A7A60E /* FilterSortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287A6B52488BE1B00A7A60E /* FilterSortViewController.swift */; };
+		A287A6BA2488DD0900A7A60E /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287A6B92488DD0900A7A60E /* UILabel+Ext.swift */; };
 		A2C52D8E2486878200AC0EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52D8D2486878200AC0EF9 /* AppDelegate.swift */; };
 		A2C52D902486878200AC0EF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52D8F2486878200AC0EF9 /* SceneDelegate.swift */; };
 		A2C52D922486878200AC0EF9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52D912486878200AC0EF9 /* WeatherViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		A287A6B52488BE1B00A7A60E /* FilterSortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSortViewController.swift; sourceTree = "<group>"; };
+		A287A6B92488DD0900A7A60E /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		A2C52D8A2486878200AC0EF9 /* NPWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C52D8D2486878200AC0EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C52D8F2486878200AC0EF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				A2C52DBA2487276D00AC0EF9 /* UIViewController+Ext.swift */,
 				A2C52DBE24876D4300AC0EF9 /* Double+Ext.swift */,
 				A2C52DC024877BAD00AC0EF9 /* String+ext.swift */,
+				A287A6B92488DD0900A7A60E /* UILabel+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			files = (
 				A2C52DC124877BAD00AC0EF9 /* String+ext.swift in Sources */,
 				A2C52D922486878200AC0EF9 /* WeatherViewController.swift in Sources */,
+				A287A6BA2488DD0900A7A60E /* UILabel+Ext.swift in Sources */,
 				A2C52D8E2486878200AC0EF9 /* AppDelegate.swift in Sources */,
 				A2C52DC42487980E00AC0EF9 /* TitleLabel.swift in Sources */,
 				A2C52DBF24876D4300AC0EF9 /* Double+Ext.swift in Sources */,
