@@ -14,7 +14,12 @@ class ViewModelManager {
     static let shared = ViewModelManager()
     private init() { }
     
-    private var suburbViewModelList: [SuburbViewModel] = []
+    private var suburbViewModelList: [SuburbViewModel]   = []
+    private var countryViewModelList: [CountryViewModel] = []
+    
+    var countryListCount: Int {
+        return countryViewModelList.count
+    }
     
     func retrieveSuburbs(completion: @escaping (NPError?) -> Void) {
         NetworkManager.shared.getSuburbs { [weak self] result in
@@ -22,7 +27,11 @@ class ViewModelManager {
             
             switch result {
                 case .success(let suburbs):
-                    self.suburbViewModelList = suburbs.map { SuburbViewModel(suburb: $0) }
+                    self.suburbViewModelList  = suburbs.map { SuburbViewModel(suburb: $0) }
+                    
+                    let tempCountryList       = suburbs.map { CountryViewModel(name: $0.country.name) }
+                    self.countryViewModelList = tempCountryList.uniqueElements
+                    
                     completion(nil)
                 case .failure(let error):
                     completion(error)
@@ -32,6 +41,14 @@ class ViewModelManager {
     
     func getSuburbList() -> [SuburbViewModel] {
         return suburbViewModelList
+    }
+    
+    func getCountryList() -> [CountryViewModel] {
+        return countryViewModelList
+    }
+    
+    func country(at index: Int) -> CountryViewModel {
+        return countryViewModelList[index]
     }
     
 }

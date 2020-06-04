@@ -126,8 +126,8 @@ class FilterSortViewController: UIViewController {
             filterCountryLabel.centerYAnchor.constraint(equalTo: filterPickerView.centerYAnchor),
             filterCountryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset * 2),
             
-            filterPickerView.widthAnchor.constraint(equalTo: sortStackView.widthAnchor, multiplier: 0.4),
-            filterPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
+            filterPickerView.widthAnchor.constraint(equalTo: sortStackView.widthAnchor, multiplier: 0.8),
+            filterPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
             filterPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             filterPickerView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor),
             
@@ -154,14 +154,15 @@ class FilterSortViewController: UIViewController {
 
 extension FilterSortViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        pickerView.subviews.forEach({ $0.isHidden = $0.frame.height < 1.0 })
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return ViewModelManager.shared.countryListCount
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row)"
+        return "\(ViewModelManager.shared.country(at: row).name)"
     }
 }
