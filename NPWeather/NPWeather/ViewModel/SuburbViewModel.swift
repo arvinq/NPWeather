@@ -11,6 +11,7 @@ import Foundation
 struct SuburbViewModel: Hashable {
     var suburbId: Int
     var suburbName: String
+    var country: String
     var weatherCondition: String?
     var weatherTemp: Int?
     var weatherFeelsLike: Int?
@@ -18,9 +19,10 @@ struct SuburbViewModel: Hashable {
     var weatherWind: String?
     var weatherLastUpdated: String?
 
-    init(id: Int, suburbName: String, weatherCondition: String? = nil, weatherTemp: String? = nil, weatherFeelsLike: String? = nil, weatherHumidity: String? = nil, weatherWind: String? = nil, weatherLastUpdated: Int? = nil) {
+    init(id: Int, suburbName: String, country: String, weatherCondition: String? = nil, weatherTemp: String? = nil, weatherFeelsLike: String? = nil, weatherHumidity: String? = nil, weatherWind: String? = nil, weatherLastUpdated: Int? = nil) {
         self.suburbId           = id
         self.suburbName         = suburbName
+        self.country            = country
         self.weatherCondition   = weatherCondition
         self.weatherTemp        = Int(weatherTemp ?? "") ?? 0
         self.weatherFeelsLike   = Int(weatherFeelsLike ?? "") ?? 0
@@ -30,6 +32,6 @@ struct SuburbViewModel: Hashable {
     }
     
     init(suburb: Suburb) {
-        self.init(id: Int(suburb.venueId)!, suburbName: suburb.name, weatherCondition: suburb.weatherCondition, weatherTemp: suburb.weatherTemp, weatherFeelsLike: suburb.weatherFeelsLike, weatherHumidity: suburb.weatherHumidity, weatherWind: suburb.weatherWind, weatherLastUpdated: suburb.weatherLastUpdated)
+        self.init(id: Int(suburb.venueId)!, suburbName: suburb.name, country: suburb.country.name, weatherCondition: suburb.weatherCondition, weatherTemp: suburb.weatherTemp, weatherFeelsLike: suburb.weatherFeelsLike, weatherHumidity: suburb.weatherHumidity, weatherWind: suburb.weatherWind, weatherLastUpdated: suburb.weatherLastUpdated)
     }
 }

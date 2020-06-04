@@ -11,6 +11,7 @@
 		A287A6BA2488DD0900A7A60E /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287A6B92488DD0900A7A60E /* UILabel+Ext.swift */; };
 		A287A6BC248912D000A7A60E /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287A6BB248912D000A7A60E /* CountryViewModel.swift */; };
 		A287A6BE2489367A00A7A60E /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287A6BD2489367A00A7A60E /* Array+Ext.swift */; };
+		A287A6C02489438F00A7A60E /* NotificationName+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287A6BF2489438F00A7A60E /* NotificationName+Ext.swift */; };
 		A2C52D8E2486878200AC0EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52D8D2486878200AC0EF9 /* AppDelegate.swift */; };
 		A2C52D902486878200AC0EF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52D8F2486878200AC0EF9 /* SceneDelegate.swift */; };
 		A2C52D922486878200AC0EF9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52D912486878200AC0EF9 /* WeatherViewController.swift */; };
@@ -41,6 +42,7 @@
 		A287A6B92488DD0900A7A60E /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		A287A6BB248912D000A7A60E /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
 		A287A6BD2489367A00A7A60E /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		A287A6BF2489438F00A7A60E /* NotificationName+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Ext.swift"; sourceTree = "<group>"; };
 		A2C52D8A2486878200AC0EF9 /* NPWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C52D8D2486878200AC0EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C52D8F2486878200AC0EF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				A2C52DC024877BAD00AC0EF9 /* String+ext.swift */,
 				A287A6B92488DD0900A7A60E /* UILabel+Ext.swift */,
 				A287A6BD2489367A00A7A60E /* Array+Ext.swift */,
+				A287A6BF2489438F00A7A60E /* NotificationName+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				A2C52DC62487996100AC0EF9 /* SecondaryTitleLabel.swift in Sources */,
 				A2C52DC824879C2300AC0EF9 /* TemperatureLabel.swift in Sources */,
 				A2C52DB12486C60400AC0EF9 /* SuburbViewModel.swift in Sources */,
+				A287A6C02489438F00A7A60E /* NotificationName+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

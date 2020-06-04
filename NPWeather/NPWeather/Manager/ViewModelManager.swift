@@ -17,6 +17,9 @@ class ViewModelManager {
     private var suburbViewModelList: [SuburbViewModel]   = []
     private var countryViewModelList: [CountryViewModel] = []
     
+    private var filteredSuburbList: [SuburbViewModel] = []
+    var countryFiltered: CountryViewModel?
+    
     var countryListCount: Int {
         return countryViewModelList.count
     }
@@ -28,8 +31,10 @@ class ViewModelManager {
             switch result {
                 case .success(let suburbs):
                     self.suburbViewModelList  = suburbs.map { SuburbViewModel(suburb: $0) }
+                    self.filteredSuburbList = self.suburbViewModelList
                     
-                    let tempCountryList       = suburbs.map { CountryViewModel(name: $0.country.name) }
+                    var tempCountryList       = [CountryViewModel(name: "All")]
+                    tempCountryList.append(contentsOf: suburbs.map { CountryViewModel(name: $0.country.name) })
                     self.countryViewModelList = tempCountryList.uniqueElements
                     
                     completion(nil)
@@ -51,4 +56,21 @@ class ViewModelManager {
         return countryViewModelList[index]
     }
     
+    func getFilteredSuburbList() -> [SuburbViewModel] {
+        return filteredSuburbList
+    }
+    
+    func setFilteredSuburb(for country: CountryViewModel) {
+        countryFiltered = country
+        guard country.name != "All" else {
+            filteredSuburbList = self.suburbViewModelList
+            return
+        }
+        
+        filteredSuburbList = suburbViewModelList.filter { $0.country == country.name }
+    }
+    
+    var filteredSuburbCount: Int {
+        return filteredSuburbList.count
+    }
 }

@@ -36,6 +36,11 @@ class FilterSortViewController: UIViewController {
         setupAfterLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupPickerValue()
+    }
+    
     private func setup() {
         setupView()
         setupConstraints()
@@ -86,6 +91,7 @@ class FilterSortViewController: UIViewController {
         applyButton = UIButton()
         applyButton.setTitle("Apply", for: .normal)
         applyButton.backgroundColor = .systemGray
+        applyButton.addTarget(self, action: #selector(applyPressed), for: .touchUpInside)
         applyButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(applyButton)
         
@@ -147,8 +153,21 @@ class FilterSortViewController: UIViewController {
         applyButton.layer.cornerRadius = applyButton.frame.size.height / 5
     }
     
+    private func setupPickerValue() {
+        guard let selectedCountry = ViewModelManager.shared.countryFiltered else { return }
+        
+        let countryList = ViewModelManager.shared.getCountryList()
+        filterPickerView.selectRow(countryList.firstIndex(of: selectedCountry) ?? 0, inComponent: 0, animated: false)
+    }
+    
     @objc private func exitPressed() {
         dismiss(animated: true)
+    }
+    
+    @objc private func applyPressed() {
+        dismiss(animated: true) {
+            NotificationCenter.default.post(.init(name: .NPWeatherApplyFilterSort))
+        }
     }
 }
 
@@ -164,5 +183,10 @@ extension FilterSortViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(ViewModelManager.shared.country(at: row).name)"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedCountry = ViewModelManager.shared.country(at: row)
+        ViewModelManager.shared.setFilteredSuburb(for: selectedCountry)
     }
 }

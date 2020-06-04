@@ -26,6 +26,7 @@ class WeatherViewController: UIViewController {
         setupView()
         setupConstraints()
         setupDatasource()
+        setupObserver()
         
         retrieveSuburbs()
     }
@@ -59,6 +60,16 @@ class WeatherViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    func setupObserver() {
+        NotificationCenter.default.addObserver(forName: .NPWeatherApplyFilterSort, object: nil, queue: nil) { [weak self] notification in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.updateData(using: ViewModelManager.shared.getFilteredSuburbList())
+            }
+        }
     }
     
     func retrieveSuburbs() {
