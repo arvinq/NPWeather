@@ -41,12 +41,10 @@ class WeatherInfoViewController: UIViewController {
         
         suburbGeneralInfoView = UIView()
         suburbGeneralInfoView.translatesAutoresizingMaskIntoConstraints = false
-        suburbGeneralInfoView.backgroundColor = .systemRed
         view.addSubview(suburbGeneralInfoView)
         
         suburbAdditionalInfoView = UIView()
         suburbAdditionalInfoView.translatesAutoresizingMaskIntoConstraints = false
-        suburbAdditionalInfoView.backgroundColor = .systemBlue
         view.addSubview(suburbAdditionalInfoView)
         
         lastUpdateLabel = SecondaryTitleLabel(fontSize: view.bounds.height * 0.02)
@@ -95,6 +93,8 @@ class WeatherInfoViewController: UIViewController {
     }
     
     private func setupSuburbInfo() {
+        self.add(childViewController: GeneralInfoViewController(suburbViewModel: suburbViewModel!), to: self.suburbGeneralInfoView)
+        self.add(childViewController: AdditionalInfoViewController(suburbViewModel: suburbViewModel!), to: self.suburbAdditionalInfoView)
         lastUpdateLabel.text = suburbViewModel?.weatherLastUpdated
     }
     

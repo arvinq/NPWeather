@@ -27,6 +27,8 @@
 		A2C52DC62487996100AC0EF9 /* SecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DC52487996100AC0EF9 /* SecondaryTitleLabel.swift */; };
 		A2C52DC824879C2300AC0EF9 /* TemperatureLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DC724879C2300AC0EF9 /* TemperatureLabel.swift */; };
 		A2C52DCA2487C08F00AC0EF9 /* WeatherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DC92487C08E00AC0EF9 /* WeatherInfoViewController.swift */; };
+		A2C52DD02487F25100AC0EF9 /* GeneralInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DCF2487F25100AC0EF9 /* GeneralInfoViewController.swift */; };
+		A2C52DD224886D8400AC0EF9 /* AdditionalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C52DD124886D8400AC0EF9 /* AdditionalInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		A2C52DC52487996100AC0EF9 /* SecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		A2C52DC724879C2300AC0EF9 /* TemperatureLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureLabel.swift; sourceTree = "<group>"; };
 		A2C52DC92487C08E00AC0EF9 /* WeatherInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoViewController.swift; sourceTree = "<group>"; };
+		A2C52DCF2487F25100AC0EF9 /* GeneralInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoViewController.swift; sourceTree = "<group>"; };
+		A2C52DD124886D8400AC0EF9 /* AdditionalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		A2C52DA5248689C700AC0EF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2C52DCE2487F20F00AC0EF9 /* ViewControllers */,
 				A2C52DC22487976D00AC0EF9 /* Label */,
 				A2C52DAD2486C2C000AC0EF9 /* Cell */,
 			);
@@ -187,6 +192,15 @@
 				A2C52DC724879C2300AC0EF9 /* TemperatureLabel.swift */,
 			);
 			path = Label;
+			sourceTree = "<group>";
+		};
+		A2C52DCE2487F20F00AC0EF9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2C52DCF2487F25100AC0EF9 /* GeneralInfoViewController.swift */,
+				A2C52DD124886D8400AC0EF9 /* AdditionalInfoViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +286,9 @@
 				A2C52DB32486C74500AC0EF9 /* ViewModelManager.swift in Sources */,
 				A2C52DCA2487C08F00AC0EF9 /* WeatherInfoViewController.swift in Sources */,
 				A2C52DAC2486BC2E00AC0EF9 /* Sport.swift in Sources */,
+				A2C52DD224886D8400AC0EF9 /* AdditionalInfoViewController.swift in Sources */,
 				A2C52DAF2486C2D300AC0EF9 /* SuburbCollectionViewCell.swift in Sources */,
+				A2C52DD02487F25100AC0EF9 /* GeneralInfoViewController.swift in Sources */,
 				A2C52D902486878200AC0EF9 /* SceneDelegate.swift in Sources */,
 				A2C52DC62487996100AC0EF9 /* SecondaryTitleLabel.swift in Sources */,
 				A2C52DC824879C2300AC0EF9 /* TemperatureLabel.swift in Sources */,

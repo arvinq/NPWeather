@@ -18,4 +18,11 @@ extension UIViewController {
             self.present(alertController, animated: true)
         }
     }
+    
+    func add(childViewController: UIViewController, to containerView: UIView) {
+        addChild(childViewController)
+        containerView.addSubview(childViewController.view)
+        childViewController.view.frame = containerView.bounds
+        childViewController.didMove(toParent: self)
+    }
 }
