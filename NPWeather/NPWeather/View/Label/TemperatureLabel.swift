@@ -29,6 +29,7 @@ class TemperatureLabel: UILabel {
         adjustsFontSizeToFitWidth   = true
         lineBreakMode               = .byTruncatingTail
         minimumScaleFactor          = 0.9
+        isUserInteractionEnabled    = true
         translatesAutoresizingMaskIntoConstraints = false
     }
     

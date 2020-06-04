@@ -21,3 +21,7 @@ enum NavTitle {
     static let filterSort = "Filter | Sort"
     static let weather    = "Weather"
 }
+
+enum SortDescriptor {
+    case alphabetically, temperature, lastUpdate
+}

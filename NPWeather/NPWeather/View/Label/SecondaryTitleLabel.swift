@@ -29,6 +29,7 @@ class SecondaryTitleLabel: UILabel {
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.9
         lineBreakMode               = .byTruncatingTail
+        isUserInteractionEnabled    = true
         translatesAutoresizingMaskIntoConstraints = false
     }
 

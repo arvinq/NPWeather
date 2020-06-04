@@ -20,6 +20,12 @@ class ViewModelManager {
     private var filteredSuburbList: [SuburbViewModel] = []
     var countryFiltered: CountryViewModel?
     
+    var sortDescriptor: SortDescriptor = .alphabetically {
+        didSet {
+            sortFilteredSuburb()
+        }
+    }
+    
     var countryListCount: Int {
         return countryViewModelList.count
     }
@@ -62,15 +68,26 @@ class ViewModelManager {
     
     func setFilteredSuburb(for country: CountryViewModel) {
         countryFiltered = country
+        
         guard country.name != "All" else {
             filteredSuburbList = self.suburbViewModelList
+            sortFilteredSuburb()
             return
         }
         
         filteredSuburbList = suburbViewModelList.filter { $0.country == country.name }
+        sortFilteredSuburb()
     }
     
     var filteredSuburbCount: Int {
         return filteredSuburbList.count
+    }
+    
+    func sortFilteredSuburb() {
+        switch sortDescriptor {
+            case .alphabetically: filteredSuburbList.sort { $0.suburbName < $1.suburbName }
+            case .temperature: filteredSuburbList.sort { $0.weatherTemp! < $1.weatherTemp! }
+            case .lastUpdate: filteredSuburbList.sort { $0.lastUpdated! > $1.lastUpdated! }
+        }
     }
 }

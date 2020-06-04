@@ -18,6 +18,7 @@ struct SuburbViewModel: Hashable {
     var weatherHumidity: String?
     var weatherWind: String?
     var weatherLastUpdated: String?
+    var lastUpdated: Int?
 
     init(id: Int, suburbName: String, country: String, weatherCondition: String? = nil, weatherTemp: String? = nil, weatherFeelsLike: String? = nil, weatherHumidity: String? = nil, weatherWind: String? = nil, weatherLastUpdated: Int? = nil) {
         self.suburbId           = id
@@ -29,6 +30,7 @@ struct SuburbViewModel: Hashable {
         self.weatherHumidity    = weatherHumidity
         self.weatherWind        = weatherWind
         self.weatherLastUpdated = Double(weatherLastUpdated ?? 0).toStringDate
+        self.lastUpdated        = weatherLastUpdated ?? 0
     }
     
     init(suburb: Suburb) {

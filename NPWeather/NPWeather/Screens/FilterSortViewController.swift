@@ -44,6 +44,7 @@ class FilterSortViewController: UIViewController {
     private func setup() {
         setupView()
         setupConstraints()
+        setupGestureRecognizer()
     }
     
     private func setupView() {
@@ -160,6 +161,21 @@ class FilterSortViewController: UIViewController {
         filterPickerView.selectRow(countryList.firstIndex(of: selectedCountry) ?? 0, inComponent: 0, animated: false)
     }
     
+    private func setupGestureRecognizer() {
+        let alphabeticalTapGesture = SorterTapGestureRecognizer(target: self, action: #selector(labelTapped(_:)))
+        alphabeticalTapGesture.sortDesc = .alphabetically
+        
+        let temperatureTapGesture = SorterTapGestureRecognizer(target: self, action: #selector(labelTapped(_:)))
+        temperatureTapGesture.sortDesc = .temperature
+        
+        let lastUpdateTapGesture = SorterTapGestureRecognizer(target: self, action: #selector(labelTapped(_:)))
+        lastUpdateTapGesture.sortDesc = .lastUpdate
+        
+        alphabeticallyLabel.addGestureRecognizer(alphabeticalTapGesture)
+        temperatureLabel.addGestureRecognizer(temperatureTapGesture)
+        lastUpdatedLabel.addGestureRecognizer(lastUpdateTapGesture)
+    }
+    
     @objc private func exitPressed() {
         dismiss(animated: true)
     }
@@ -168,6 +184,17 @@ class FilterSortViewController: UIViewController {
         dismiss(animated: true) {
             NotificationCenter.default.post(.init(name: .NPWeatherApplyFilterSort))
         }
+    }
+    
+    @objc private func labelTapped(_ sender: SorterTapGestureRecognizer) {
+        [alphabeticallyLabel,temperatureLabel, lastUpdatedLabel].forEach {
+            $0?.textColor = .secondaryLabel
+        }
+        
+        guard let selectedLabel = sender.view as? UILabel else { return }
+        selectedLabel.textColor = .systemTeal
+        
+        ViewModelManager.shared.sortDescriptor = sender.sortDesc!
     }
 }
 
