@@ -34,10 +34,10 @@ class WeatherInfoViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
-        title = "Weather"
+        title = NavTitle.weather
         
-        doneBarButton = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backPressed))
-        navigationItem.setLeftBarButton(doneBarButton, animated: true)
+        doneBarButton = UIBarButtonItem(image: SFSymbols.close, style: .done, target: self, action: #selector(backPressed))
+        navigationItem.setRightBarButton(doneBarButton, animated: true)
         
         suburbGeneralInfoView = UIView()
         suburbGeneralInfoView.translatesAutoresizingMaskIntoConstraints = false

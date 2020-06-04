@@ -12,6 +12,7 @@ class WeatherViewController: UIViewController {
 
     enum Section { case main }
     
+    var filterSortBarButton: UIBarButtonItem!
     var collectionView: UICollectionView!
     var datasource: UICollectionViewDiffableDataSource<Section, SuburbViewModel>!
     
@@ -33,7 +34,7 @@ class WeatherViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         //configure navigation bar
-        title = "Weather"
+        title = NavTitle.weather
         navigationController?.navigationBar.prefersLargeTitles = true
         
         //collectionView and layout
@@ -47,6 +48,8 @@ class WeatherViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         
+        filterSortBarButton = UIBarButtonItem(image: SFSymbols.filterSort2, style: .plain, target: self, action: #selector(filterSortPressed))
+        navigationItem.setRightBarButton(filterSortBarButton, animated: true)
     }
     
     func setupConstraints() {
@@ -68,6 +71,12 @@ class WeatherViewController: UIViewController {
             self?.updateData(using: ViewModelManager.shared.getSuburbList())
             
         }
+    }
+    
+    @objc func filterSortPressed() {
+        let filterAndSortVC = FilterSortViewController()
+        let navController = UINavigationController(rootViewController: filterAndSortVC)
+        present(navController, animated: true)
     }
     
 }
