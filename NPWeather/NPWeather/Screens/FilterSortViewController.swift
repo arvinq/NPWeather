@@ -24,6 +24,7 @@ class FilterSortViewController: UIViewController {
     // filter group
     var filterLabel: TitleLabel!
     var filterCountryLabel: SecondaryTitleLabel!
+    var filterCountryValueLabel: SecondaryTitleLabel!
     var filterPickerView: UIPickerView!
     
     //separator and button
@@ -97,6 +98,9 @@ class FilterSortViewController: UIViewController {
         filterCountryLabel.text = "Country:"
         view.addSubview(filterCountryLabel)
         
+        filterCountryValueLabel = SecondaryTitleLabel(fontSize: view.bounds.height * 0.03, fontColor: .systemTeal)
+        view.addSubview(filterCountryValueLabel)
+        
         // counter picker selection
         filterPickerView = UIPickerView()
         filterPickerView.delegate = self
@@ -152,13 +156,16 @@ class FilterSortViewController: UIViewController {
             filterLabel.topAnchor.constraint(equalTo: separatorUpperView.bottomAnchor, constant: inset),
             
             //filter picker and country label
-            filterCountryLabel.centerYAnchor.constraint(equalTo: filterPickerView.centerYAnchor),
+            filterCountryLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: inset),
             filterCountryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset * 2),
+            
+            filterCountryValueLabel.centerYAnchor.constraint(equalTo: filterCountryLabel.centerYAnchor),
+            filterCountryValueLabel.leadingAnchor.constraint(equalTo: filterCountryLabel.trailingAnchor, constant: inset),
             
             filterPickerView.widthAnchor.constraint(equalTo: sortStackView.widthAnchor, multiplier: 0.8),
             filterPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
-            filterPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            filterPickerView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor),
+            filterPickerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            filterPickerView.topAnchor.constraint(equalTo: filterCountryLabel.bottomAnchor, constant: inset),
             
             //second separator view
             separatorLowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
@@ -188,6 +195,7 @@ class FilterSortViewController: UIViewController {
         
         let countryList = ViewModelManager.shared.getCountryList()
         filterPickerView.selectRow(countryList.firstIndex(of: selectedCountry) ?? 0, inComponent: 0, animated: false)
+        filterCountryValueLabel.text = selectedCountry.name
     }
     
     /**
@@ -240,7 +248,6 @@ class FilterSortViewController: UIViewController {
 
 extension FilterSortViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        pickerView.subviews.forEach({ $0.isHidden = $0.frame.height < 1.0 })
         return 1
     }
     
@@ -254,6 +261,7 @@ extension FilterSortViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCountry = ViewModelManager.shared.country(at: row)
+        filterCountryValueLabel.text = selectedCountry.name
         ViewModelManager.shared.setFilteredSuburb(for: selectedCountry)
     }
 }

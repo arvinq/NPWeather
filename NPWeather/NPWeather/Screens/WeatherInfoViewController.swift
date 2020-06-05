@@ -113,7 +113,7 @@ class WeatherInfoViewController: UIViewController {
     private func setupSuburbInfo() {
         self.add(childViewController: GeneralInfoViewController(suburbViewModel: suburbViewModel!), to: self.suburbGeneralInfoView)
         self.add(childViewController: AdditionalInfoViewController(suburbViewModel: suburbViewModel!), to: self.suburbAdditionalInfoView)
-        lastUpdateLabel.text = suburbViewModel?.weatherLastUpdated
+        lastUpdateLabel.text = "Last updated: \(suburbViewModel?.weatherLastUpdated ?? "N/A")"
     }
     
     @objc private func backPressed() {
