@@ -18,6 +18,7 @@ class WeatherViewController: UIViewController {
     var filterSortBarButton: UIBarButtonItem!
     var collectionView: UICollectionView!
     var refreshControl: UIRefreshControl!
+    var searchController: UISearchController!
     
     var datasource: UICollectionViewDiffableDataSource<Section, SuburbViewModel>!
     
@@ -64,6 +65,15 @@ class WeatherViewController: UIViewController {
         //navigation button
         filterSortBarButton = UIBarButtonItem(image: SFSymbols.filterSort2, style: .plain, target: self, action: #selector(filterSortPressed))
         navigationItem.setRightBarButton(filterSortBarButton, animated: true)
+        
+        //Search controller
+        searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search for suburb"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
     }
     
     func setupConstraints() {
@@ -96,6 +106,7 @@ class WeatherViewController: UIViewController {
                 return
             }
             
+            ViewModelManager.shared.setInitialFilterValues()
             self?.updateData(using: ViewModelManager.shared.getSuburbList())
         }
     }
@@ -114,7 +125,7 @@ class WeatherViewController: UIViewController {
     }
 }
 
-//MARK: - View Controller Extension
+//MARK: - CollectionView Protocol Conformance
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -169,3 +180,26 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDeleg
     }
 }
 
+//MARK: - SearchController Protocol Conformance
+
+extension WeatherViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchedSuburb = searchController.searchBar.text, !searchedSuburb.isEmpty else {
+            // if the search text is empty, just get the original suburb list and set the initial
+            // filter values to default
+            ViewModelManager.shared.setInitialFilterValues()
+            updateData(using: ViewModelManager.shared.getSuburbList())
+            return
+        }
+        
+        // invoke filtering on entered suburb text and update dataSource
+        ViewModelManager.shared.setFilteredSuburb(onSuburb: searchedSuburb)
+        updateData(using: ViewModelManager.shared.getFilteredSuburbList())
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // set filter values to default and get the original suburb list
+        ViewModelManager.shared.setInitialFilterValues()
+        updateData(using: ViewModelManager.shared.getSuburbList())
+    }
+}

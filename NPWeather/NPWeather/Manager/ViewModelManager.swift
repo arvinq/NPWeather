@@ -129,4 +129,27 @@ class ViewModelManager {
             case .lastUpdate: filteredSuburbList.sort { $0.lastUpdated! > $1.lastUpdated! }
         }
     }
+    
+    /**
+     * Filter suburb list based on the suburbName passed. This is primarily for the search function in main view controller
+     *
+     * - Parameters:
+     *   - suburbName: string to compare to list of suburbs
+     */
+    func setFilteredSuburb(onSuburb suburbName: String) {
+        filteredSuburbList = suburbViewModelList.filter {
+            $0.suburbName.lowercased().contains(suburbName.lowercased())
+        }
+    }
+
+    /**
+     * Set our filter values to initial values
+     */
+    func setInitialFilterValues() {
+        //our temporaray country representing all of the countries
+        countryFiltered = CountryViewModel(name: "All")
+        
+        //also bring back filterList to original list
+        filteredSuburbList = suburbViewModelList
+    }
 }
