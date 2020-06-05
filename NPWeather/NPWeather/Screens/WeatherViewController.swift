@@ -17,6 +17,8 @@ class WeatherViewController: UIViewController {
     
     var filterSortBarButton: UIBarButtonItem!
     var collectionView: UICollectionView!
+    var refreshControl: UIRefreshControl!
+    
     var datasource: UICollectionViewDiffableDataSource<Section, SuburbViewModel>!
     
     override func viewDidLoad() {
@@ -50,8 +52,14 @@ class WeatherViewController: UIViewController {
         collectionView.register(SuburbCollectionViewCell.self, forCellWithReuseIdentifier: SuburbCollectionViewCell.reuseId)
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
+        collectionView.alwaysBounceVertical = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
+        
+        //refresh controller
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshCollection), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         
         //navigation button
         filterSortBarButton = UIBarButtonItem(image: SFSymbols.filterSort2, style: .plain, target: self, action: #selector(filterSortPressed))
@@ -99,6 +107,11 @@ class WeatherViewController: UIViewController {
         present(navController, animated: true)
     }
     
+    /// Refresh our dataSource. Call retrieveSuburb when user pull's down the collection view to update suburb list.
+    @objc func refreshCollection() {
+        retrieveSuburbs()
+        collectionView.refreshControl?.endRefreshing()
+    }
 }
 
 //MARK: - View Controller Extension
