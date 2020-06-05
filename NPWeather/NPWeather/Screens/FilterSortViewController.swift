@@ -26,11 +26,26 @@ class FilterSortViewController: UIViewController {
     var filterCountryLabel: SecondaryTitleLabel!
     var filterCountryValueLabel: SecondaryTitleLabel!
     var filterPickerView: UIPickerView!
+
+    var lowerSeparatorConstraint: NSLayoutConstraint!
+    var isPickerViewVisible: Bool = false {
+        willSet {
+            //toggling picker view also toggles the separator's constraint
+            self.lowerSeparatorConstraint.constant = newValue ? Space.largerInset + self.filterPickerView.bounds.height : Space.inset
+        }
+    }
     
     //separator and button
     var separatorUpperView: UIView!
     var separatorLowerView: UIView!
     var applyButton: UIButton!
+    
+    enum Space {
+        //local enum for some magic numbers used within the class
+        static let inset           = CGFloat(20)
+        static let largerInset     = CGFloat(30)
+        static let separatorHeight = CGFloat(0.5)
+    }
     
     //MARK: - View Hierarchy Methods
     
@@ -128,57 +143,55 @@ class FilterSortViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        //some magic numbers
-        let inset           = CGFloat(20)
-        let separatorHeight = CGFloat(0.5)
-        
         NSLayoutConstraint.activate([
             //sort caption
-            sortLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            sortLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.inset),
             sortLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sortLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: inset),
+            sortLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Space.inset),
             
             //sort descriptor container
             sortStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
             sortStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
             sortStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            sortStackView.topAnchor.constraint(equalTo: sortLabel.bottomAnchor, constant: inset),
+            sortStackView.topAnchor.constraint(equalTo: sortLabel.bottomAnchor, constant: Space.inset),
 
             //first separator view
             separatorUpperView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             separatorUpperView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            separatorUpperView.heightAnchor.constraint(equalToConstant: separatorHeight),
-            separatorUpperView.topAnchor.constraint(equalTo: sortStackView.bottomAnchor, constant: inset),
+            separatorUpperView.heightAnchor.constraint(equalToConstant: Space.separatorHeight),
+            separatorUpperView.topAnchor.constraint(equalTo: sortStackView.bottomAnchor, constant: Space.inset),
 
             //filter caption
-            filterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            filterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.inset),
             filterLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            filterLabel.topAnchor.constraint(equalTo: separatorUpperView.bottomAnchor, constant: inset),
+            filterLabel.topAnchor.constraint(equalTo: separatorUpperView.bottomAnchor, constant: Space.inset),
             
             //filter picker and country label
-            filterCountryLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: inset),
-            filterCountryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset * 2),
+            filterCountryLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: Space.inset),
+            filterCountryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.inset * 2),
             
             filterCountryValueLabel.centerYAnchor.constraint(equalTo: filterCountryLabel.centerYAnchor),
-            filterCountryValueLabel.leadingAnchor.constraint(equalTo: filterCountryLabel.trailingAnchor, constant: inset),
+            filterCountryValueLabel.leadingAnchor.constraint(equalTo: filterCountryLabel.trailingAnchor, constant: Space.inset),
             
-            filterPickerView.widthAnchor.constraint(equalTo: sortStackView.widthAnchor, multiplier: 0.8),
+            filterPickerView.widthAnchor.constraint(equalTo: sortStackView.widthAnchor, multiplier: 0.7),
             filterPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
             filterPickerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            filterPickerView.topAnchor.constraint(equalTo: filterCountryLabel.bottomAnchor, constant: inset),
+            filterPickerView.topAnchor.constraint(equalTo: filterCountryLabel.bottomAnchor, constant: Space.inset),
             
             //second separator view
             separatorLowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             separatorLowerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            separatorLowerView.heightAnchor.constraint(equalToConstant: separatorHeight),
-            separatorLowerView.topAnchor.constraint(equalTo: filterPickerView.bottomAnchor, constant: inset),
+            separatorLowerView.heightAnchor.constraint(equalToConstant: Space.separatorHeight),
             
             //action button
-            applyButton.topAnchor.constraint(equalTo: separatorLowerView.bottomAnchor, constant: inset * 2),
+            applyButton.topAnchor.constraint(equalTo: separatorLowerView.bottomAnchor, constant: Space.inset - 10),
             applyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            applyButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            applyButton.widthAnchor.constraint(equalTo: sortStackView.widthAnchor, multiplier: 0.8),
             applyButton.heightAnchor.constraint(equalTo: sortStackView.heightAnchor, multiplier: 0.3),
         ])
+        
+        lowerSeparatorConstraint = separatorLowerView.topAnchor.constraint(equalTo: filterCountryLabel.bottomAnchor, constant: Space.inset)
+        lowerSeparatorConstraint.isActive = true
     }
     
     private func setupAfterLayout() {
@@ -214,6 +227,8 @@ class FilterSortViewController: UIViewController {
         alphabeticallyLabel.addGestureRecognizer(alphabeticalTapGesture)
         temperatureLabel.addGestureRecognizer(temperatureTapGesture)
         lastUpdatedLabel.addGestureRecognizer(lastUpdateTapGesture)
+        
+        filterCountryValueLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(filterLabelTapped)))
     }
     
     //MARK: - Controller methods
@@ -241,6 +256,16 @@ class FilterSortViewController: UIViewController {
         
         // assign the sort descriptor tied in the tapGesture to ViewModelManager's sortDescriptor property
         ViewModelManager.shared.sortDescriptor = sender.sortDesc!
+    }
+    
+    /// action to animate picker visibility and lower separator's constraint
+    @objc private func filterLabelTapped() {
+        UIView.animate(withDuration: 0.35, animations: {
+            self.isPickerViewVisible.toggle()
+            self.view.layoutIfNeeded()
+        }) { (true) in
+            self.filterPickerView.isHidden = !self.isPickerViewVisible
+        }
     }
 }
 
