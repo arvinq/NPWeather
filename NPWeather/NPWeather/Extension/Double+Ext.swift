@@ -9,6 +9,10 @@
 import Foundation
 
 extension Double {
+    
+    /**
+     * Computed property to convert timestamp to string date.
+     */
     var toStringDate: String {
         get {
             let date = Date(timeIntervalSince1970: self)

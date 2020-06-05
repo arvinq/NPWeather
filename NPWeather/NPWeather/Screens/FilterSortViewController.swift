@@ -10,21 +10,28 @@ import UIKit
 
 class FilterSortViewController: UIViewController {
 
+    //MARK: - Property Declaration
+    
     var exitBarButtonItem: UIBarButtonItem!
     
+    // sort group
     var sortLabel: TitleLabel!
     var sortStackView: UIStackView!
     var alphabeticallyLabel: SecondaryTitleLabel!
     var temperatureLabel: SecondaryTitleLabel!
     var lastUpdatedLabel: SecondaryTitleLabel!
     
+    // filter group
     var filterLabel: TitleLabel!
     var filterCountryLabel: SecondaryTitleLabel!
     var filterPickerView: UIPickerView!
     
+    //separator and button
     var separatorUpperView: UIView!
     var separatorLowerView: UIView!
     var applyButton: UIButton!
+    
+    //MARK: - View Hierarchy Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +48,8 @@ class FilterSortViewController: UIViewController {
         setupPickerValue()
     }
     
+    //MARK: - Setup views
+    
     private func setup() {
         setupView()
         setupConstraints()
@@ -48,15 +57,18 @@ class FilterSortViewController: UIViewController {
     }
     
     private func setupView() {
+        // configure navigation bar
         view.backgroundColor = .systemBackground
         title = NavTitle.filterSort
         
         exitBarButtonItem = UIBarButtonItem(image: SFSymbols.close, style: .done, target: self, action: #selector(exitPressed))
         navigationItem.setRightBarButton(exitBarButtonItem, animated: true)
         
+        // sort caption
         sortLabel = TitleLabel(fontSize: view.bounds.height * 0.03, text: "Sort")
         view.addSubview(sortLabel)
         
+        // sort descriptor container
         sortStackView = UIStackView()
         sortStackView.axis = .vertical
         sortStackView.alignment = .fill
@@ -64,6 +76,7 @@ class FilterSortViewController: UIViewController {
         sortStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sortStackView)
         
+        // customized label corresponding to each sort descriptor
         alphabeticallyLabel = SecondaryTitleLabel(fontSize: view.bounds.height * 0.03, fontColor: .secondaryLabel)
         alphabeticallyLabel.setImageAndText(usingImage: SFSymbols.alphabet!, andText: "Alphabetically")
         sortStackView.addArrangedSubview(alphabeticallyLabel)
@@ -76,6 +89,7 @@ class FilterSortViewController: UIViewController {
         lastUpdatedLabel.setImageAndText(usingImage: SFSymbols.calendar!, andText: "Last Updated")
         sortStackView.addArrangedSubview(lastUpdatedLabel)
 
+        // filter caption
         filterLabel = TitleLabel(fontSize: view.bounds.height * 0.03, text: "Filter")
         view.addSubview(filterLabel)
         
@@ -83,6 +97,7 @@ class FilterSortViewController: UIViewController {
         filterCountryLabel.text = "Country:"
         view.addSubview(filterCountryLabel)
         
+        // counter picker selection
         filterPickerView = UIPickerView()
         filterPickerView.delegate = self
         filterPickerView.dataSource = self
@@ -96,6 +111,7 @@ class FilterSortViewController: UIViewController {
         applyButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(applyButton)
         
+        //separator views
         separatorUpperView = UIView()
         separatorUpperView.backgroundColor = .systemGray
         separatorUpperView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,28 +124,34 @@ class FilterSortViewController: UIViewController {
     }
     
     private func setupConstraints() {
+        //some magic numbers
         let inset           = CGFloat(20)
         let separatorHeight = CGFloat(0.5)
         
         NSLayoutConstraint.activate([
+            //sort caption
             sortLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             sortLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             sortLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: inset),
             
+            //sort descriptor container
             sortStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
             sortStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
             sortStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sortStackView.topAnchor.constraint(equalTo: sortLabel.bottomAnchor, constant: inset),
 
+            //first separator view
             separatorUpperView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             separatorUpperView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             separatorUpperView.heightAnchor.constraint(equalToConstant: separatorHeight),
             separatorUpperView.topAnchor.constraint(equalTo: sortStackView.bottomAnchor, constant: inset),
 
+            //filter caption
             filterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             filterLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             filterLabel.topAnchor.constraint(equalTo: separatorUpperView.bottomAnchor, constant: inset),
             
+            //filter picker and country label
             filterCountryLabel.centerYAnchor.constraint(equalTo: filterPickerView.centerYAnchor),
             filterCountryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset * 2),
             
@@ -138,11 +160,13 @@ class FilterSortViewController: UIViewController {
             filterPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             filterPickerView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor),
             
+            //second separator view
             separatorLowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             separatorLowerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             separatorLowerView.heightAnchor.constraint(equalToConstant: separatorHeight),
             separatorLowerView.topAnchor.constraint(equalTo: filterPickerView.bottomAnchor, constant: inset),
             
+            //action button
             applyButton.topAnchor.constraint(equalTo: separatorLowerView.bottomAnchor, constant: inset * 2),
             applyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             applyButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
@@ -151,9 +175,14 @@ class FilterSortViewController: UIViewController {
     }
     
     private func setupAfterLayout() {
+        // rounds button corner after it has been layed out
         applyButton.layer.cornerRadius = applyButton.frame.size.height / 5
     }
     
+    /**
+     * Checks if a filter has been preformed recently, if it has, get the index of the filtered country in countryViewModel List and
+     * pre-select the row in picker view.
+     */
     private func setupPickerValue() {
         guard let selectedCountry = ViewModelManager.shared.countryFiltered else { return }
         
@@ -161,6 +190,9 @@ class FilterSortViewController: UIViewController {
         filterPickerView.selectRow(countryList.firstIndex(of: selectedCountry) ?? 0, inComponent: 0, animated: false)
     }
     
+    /**
+     * Sets up the gesture recognizer for the sort labels. Each of the sorting labels correspond to a sort descriptor
+     */
     private func setupGestureRecognizer() {
         let alphabeticalTapGesture = SorterTapGestureRecognizer(target: self, action: #selector(labelTapped(_:)))
         alphabeticalTapGesture.sortDesc = .alphabetically
@@ -176,10 +208,13 @@ class FilterSortViewController: UIViewController {
         lastUpdatedLabel.addGestureRecognizer(lastUpdateTapGesture)
     }
     
+    //MARK: - Controller methods
+    
     @objc private func exitPressed() {
         dismiss(animated: true)
     }
     
+    /// Post the changes made to ViewModel filter list
     @objc private func applyPressed() {
         dismiss(animated: true) {
             NotificationCenter.default.post(.init(name: .NPWeatherApplyFilterSort))
@@ -187,16 +222,21 @@ class FilterSortViewController: UIViewController {
     }
     
     @objc private func labelTapped(_ sender: SorterTapGestureRecognizer) {
-        [alphabeticallyLabel,temperatureLabel, lastUpdatedLabel].forEach {
+        // reset back all of the sorting label's text color
+        [alphabeticallyLabel, temperatureLabel, lastUpdatedLabel].forEach {
             $0?.textColor = .secondaryLabel
         }
         
+        // after resetting back the colors, apply a different color on the selected sort label
         guard let selectedLabel = sender.view as? UILabel else { return }
         selectedLabel.textColor = .systemTeal
         
+        // assign the sort descriptor tied in the tapGesture to ViewModelManager's sortDescriptor property
         ViewModelManager.shared.sortDescriptor = sender.sortDesc!
     }
 }
+
+//MARK: - Picker Delegate & DataSource methods
 
 extension FilterSortViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

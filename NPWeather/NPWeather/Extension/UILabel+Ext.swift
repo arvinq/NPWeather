@@ -9,6 +9,14 @@
 import UIKit
 
 extension UILabel {
+    
+    /**
+     * Utility method to customize our label with the image and text passed
+     *
+     * - Parameters:
+     *   - image: prepended image to use in our labels
+     *   - text: text to use in our labels
+     */
     func setImageAndText(usingImage image: UIImage, andText text: String) {
         //Create Attachment
         let imageAttachment = NSTextAttachment()

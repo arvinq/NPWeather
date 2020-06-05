@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Dedicated label for temperature
+ */
 class TemperatureLabel: UILabel {
 
     override init(frame: CGRect) {

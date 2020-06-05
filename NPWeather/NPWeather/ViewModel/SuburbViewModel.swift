@@ -20,6 +20,7 @@ struct SuburbViewModel: Hashable {
     var weatherLastUpdated: String?
     var lastUpdated: Int?
 
+    //override memberwise initializer for nil values
     init(id: Int, suburbName: String, country: String, weatherCondition: String? = nil, weatherTemp: String? = nil, weatherFeelsLike: String? = nil, weatherHumidity: String? = nil, weatherWind: String? = nil, weatherLastUpdated: Int? = nil) {
         self.suburbId           = id
         self.suburbName         = suburbName
@@ -33,6 +34,8 @@ struct SuburbViewModel: Hashable {
         self.lastUpdated        = weatherLastUpdated ?? 0
     }
     
+    
+    //assigning model properties to our viewModel
     init(suburb: Suburb) {
         self.init(id: Int(suburb.venueId)!, suburbName: suburb.name, country: suburb.country.name, weatherCondition: suburb.weatherCondition, weatherTemp: suburb.weatherTemp, weatherFeelsLike: suburb.weatherFeelsLike, weatherHumidity: suburb.weatherHumidity, weatherWind: suburb.weatherWind, weatherLastUpdated: suburb.weatherLastUpdated)
     }

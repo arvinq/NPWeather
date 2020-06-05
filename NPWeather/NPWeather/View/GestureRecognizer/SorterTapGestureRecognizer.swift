@@ -9,5 +9,6 @@
 import UIKit
 
 class SorterTapGestureRecognizer: UITapGestureRecognizer {
+    /// Container variable mainly for storing sort descriptor
     var sortDesc: SortDescriptor?
 }

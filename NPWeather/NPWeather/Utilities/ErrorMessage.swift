@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Custom error that contains messages used when an issue is encountered in the  network response
 enum NPError: String, Error {
     case invalidUrl        = "Invalid Request. Please contact the administrator."
     case invalidData       = "The data received from the server is invalid. Please try again."

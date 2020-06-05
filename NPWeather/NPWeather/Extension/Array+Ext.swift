@@ -9,6 +9,10 @@
 import Foundation
 
 extension Array where Element: Hashable {
+    
+    /**
+     * Remove duplicate values form our array and preserve ordering
+     */
     var uniqueElements: [Element] {
         var setElements = Set(self)
         return compactMap { setElements.remove($0) }

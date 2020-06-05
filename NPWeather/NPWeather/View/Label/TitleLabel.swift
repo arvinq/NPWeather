@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Main label used for large, main texts
+ */
 class TitleLabel: UILabel {
 
     override init(frame: CGRect) {

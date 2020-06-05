@@ -9,8 +9,11 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-
+    
+    /// sole section to be used in our diffable data source
     enum Section { case main }
+    
+    //MARK: - Property Declaration
     
     var filterSortBarButton: UIBarButtonItem!
     var collectionView: UICollectionView!
@@ -18,9 +21,10 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
     }
+    
+    //MARK: - Setup views
     
     func setup() {
         setupView()
@@ -49,6 +53,7 @@ class WeatherViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         
+        //navigation button
         filterSortBarButton = UIBarButtonItem(image: SFSymbols.filterSort2, style: .plain, target: self, action: #selector(filterSortPressed))
         navigationItem.setRightBarButton(filterSortBarButton, animated: true)
     }
@@ -62,6 +67,7 @@ class WeatherViewController: UIViewController {
         ])
     }
     
+    /// Listen to notification and perform a diff on our current data source
     func setupObserver() {
         NotificationCenter.default.addObserver(forName: .NPWeatherApplyFilterSort, object: nil, queue: nil) { [weak self] notification in
             guard let self = self else { return }
@@ -72,6 +78,9 @@ class WeatherViewController: UIViewController {
         }
     }
     
+    //MARK: - Controller methods
+    
+    /// Retrieve suburbs from network via ViewModel manager. If there's an error in fetch, we present an alert showing the error else, we update our dataSource.
     func retrieveSuburbs() {
         ViewModelManager.shared.retrieveSuburbs { [weak self] error in
             guard error == nil else {
@@ -80,10 +89,10 @@ class WeatherViewController: UIViewController {
             }
             
             self?.updateData(using: ViewModelManager.shared.getSuburbList())
-            
         }
     }
     
+    /// Show filter and sort view controller
     @objc func filterSortPressed() {
         let filterAndSortVC = FilterSortViewController()
         let navController = UINavigationController(rootViewController: filterAndSortVC)
@@ -92,8 +101,13 @@ class WeatherViewController: UIViewController {
     
 }
 
+//MARK: - View Controller Extension
+
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    //MARK: - DataSource and Snapshot Configuration
+    
+    /// Initialize our data source. We also setup our custom cell to be used in our collection view referenced by the data source
     func setupDatasource() {
         datasource = UICollectionViewDiffableDataSource<Section, SuburbViewModel>(collectionView: collectionView, cellProvider: { (collectionView, indexpath, suburbViewModel) -> UICollectionViewCell? in
             
@@ -104,12 +118,20 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDeleg
         })
     }
     
+    /**
+     * Create and apply a diff onto the snapshot using our current datasource and the list passed.
+     *
+     * - Parameters:
+     *   - suburbList: list to diff our current suburbList to
+     */
     func updateData(using suburbList: [SuburbViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SuburbViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(suburbList)
         datasource.apply(snapshot, animatingDifferences: true)
     }
+    
+    //MARK: - Delegate methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -120,11 +142,14 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Get our view model in the datasource pointed to by the selected indexPath
         guard let suburbViewModel = datasource.itemIdentifier(for: indexPath) else { return }
         
+        // Initialize our Weather Info VC and make it as root to our Navigation Controller
         let weatherInfoVC = WeatherInfoViewController()
         let navController = UINavigationController(rootViewController: weatherInfoVC)
         
+        // Pass the view model to our weather info VC mainly to bind the values into the properties.
         weatherInfoVC.suburbViewModel = suburbViewModel
         
         present(navController, animated: true)

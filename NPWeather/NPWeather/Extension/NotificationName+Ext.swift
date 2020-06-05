@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ * Custom notification used when applying a filter / sort on our suburb list
+ */
 extension Notification.Name {
     static let NPWeatherApplyFilterSort = NSNotification.Name("applyFilterSort")
 }

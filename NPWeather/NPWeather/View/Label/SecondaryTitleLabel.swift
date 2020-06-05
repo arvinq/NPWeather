@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Sub label for supplementary labels
+ */
 class SecondaryTitleLabel: UILabel {
 
     override init(frame: CGRect) {
